@@ -5,7 +5,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "outDir": "build"
+    "outDir": "build",
+    "strictNullChecks": false
   },
   "exclude": [
     "node_modules"
