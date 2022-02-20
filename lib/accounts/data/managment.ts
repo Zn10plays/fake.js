@@ -1,19 +1,19 @@
 import * as data from './data.json'
 
-function getRandomFirstName (): String {
+function randomFirstName (): string {
   const fNames = data.firstNames
   return fNames[Math.floor(Math.random() * fNames.length)]
 }
 
-function getRandomLastName (): String {
-  const lNames: String[] = data.lastName
+function randomLastName (): string {
+  const lNames: string[] = data.lastName
   return lNames[Math.floor(Math.random() * lNames.length)]
 }
 
-function getRandomNumber (opt: {style: boolean}): String {
+function randomNumber (opt: {style: boolean}): string {
   const length: number = 8
-  const charset: String = '1234567890'
-  const retVal: String[] = []
+  const charset: string = '1234567890'
+  const retVal: string[] = []
 
   for (let i = 0, n = charset.length; i < length; ++i) {
     retVal.push(charset.charAt(Math.floor(Math.random() * n)))
@@ -26,11 +26,11 @@ function getRandomNumber (opt: {style: boolean}): String {
   return retVal.join()
 }
 
-function getRandomPassword (opt: {length: 8, number: false, capital: true, specialCharacters: String[]}): String {
+function randomPassword (opt: {length: 8, number: false, capital: true, specialCharacters: string[]}): string {
   let pass: string = ''
   const nums: string = '1234567890'
   let characters: string = 'qwertyuiopasdfghjklzxcvbnm'
-  const capitals: string = 'QWERTYUIOOPASDFGHJKLZXCVBNM'
+  const capitals: string = 'QWERTYUIOOPAsDFGHJKLZXCVBNM'
 
   if (opt.number) {
     characters += nums
@@ -45,4 +45,4 @@ function getRandomPassword (opt: {length: 8, number: false, capital: true, speci
   return pass
 }
 
-export { getRandomFirstName, getRandomLastName, getRandomNumber, getRandomPassword }
+export default { randomFirstName, randomLastName, randomNumber, randomPassword }
