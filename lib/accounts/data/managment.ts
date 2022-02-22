@@ -11,7 +11,7 @@ function randomLastName (): string {
 }
 
 function randomNumber (opt: {style: boolean}): string {
-  const length: number = 8
+  const length: number = 10
   const charset: string = '1234567890'
   const retVal: string[] = []
 
@@ -19,23 +19,30 @@ function randomNumber (opt: {style: boolean}): string {
     retVal.push(charset.charAt(Math.floor(Math.random() * n)))
   }
 
-  const numstr = retVal.join()
+  const numstr = retVal.join('')
   if (opt.style) {
-    return '+1 (' + numstr.slice(0, 3) + ')  ' + numstr.slice(3, 6) + ' - ' + numstr.slice(6, 10)
+    return '+1 (' + numstr.slice(0, 3) + ') ' + numstr.slice(3, 6) + ' - ' + numstr.slice(6, 10)
   }
-  return retVal.join()
+  return retVal.join('')
 }
 
-function randomPassword (opt: {length: 8, number: false, capital: true, specialCharacters: string[]}): string {
+interface opt {
+  length: 8
+  number: false
+  capital: true
+  specialCharacters: string[]
+}
+
+function randomPassword (opt: opt): string {
   let pass: string = ''
   const nums: string = '1234567890'
   let characters: string = 'qwertyuiopasdfghjklzxcvbnm'
   const capitals: string = 'QWERTYUIOOPAsDFGHJKLZXCVBNM'
 
-  if (opt.number) {
+  if (opt?.number) {
     characters += nums
   }
-  if (opt.capital) {
+  if (!opt?.capital) {
     characters += capitals
   }
 
@@ -45,4 +52,6 @@ function randomPassword (opt: {length: 8, number: false, capital: true, specialC
   return pass
 }
 
-export default { randomFirstName, randomLastName, randomNumber, randomPassword }
+const exp = { randomFirstName, randomLastName, randomNumber, randomPassword }
+
+export default exp
