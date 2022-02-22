@@ -1,6 +1,6 @@
 import randInfo from './data/managment'
 
-class randAccount {
+class RandAccount {
   phonenumber: string
   firstName: string
   lastName: string
@@ -14,4 +14,4 @@ class randAccount {
   }
 }
 
-export default randAccount
+export default RandAccount

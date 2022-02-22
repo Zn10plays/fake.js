@@ -10,7 +10,7 @@ function randomLastName (): string {
   return lNames[Math.floor(Math.random() * lNames.length)]
 }
 
-function randomNumber (opt: {style: boolean}): string {
+function randomNumber (opt: {style: boolean } | null): string {
   const length: number = 10
   const charset: string = '1234567890'
   const retVal: string[] = []
@@ -20,33 +20,33 @@ function randomNumber (opt: {style: boolean}): string {
   }
 
   const numstr = retVal.join('')
-  if (opt.style) {
+  if (opt !== null ? opt?.style : false) {
     return '+1 (' + numstr.slice(0, 3) + ') ' + numstr.slice(3, 6) + ' - ' + numstr.slice(6, 10)
   }
   return retVal.join('')
 }
 
-interface opt {
-  length: 8
-  number: false
-  capital: true
-  specialCharacters: string[]
-}
-
-function randomPassword (opt: opt): string {
+function randomPassword (opt: {length: 8, number: false, capital: true, specialCharacters: string[]}): string {
   let pass: string = ''
   const nums: string = '1234567890'
   let characters: string = 'qwertyuiopasdfghjklzxcvbnm'
   const capitals: string = 'QWERTYUIOOPAsDFGHJKLZXCVBNM'
 
-  if (opt?.number) {
-    characters += nums
-  }
-  if (!opt?.capital) {
-    characters += capitals
+  let len: number = 8
+
+  if (opt !== null) {
+    if (opt?.capital) {
+      characters += capitals
+    }
+    if (opt?.number) {
+      characters += nums
+    }
+    if (typeof opt?.length === 'number') {
+      len = opt.length
+    }
   }
 
-  for (let i = 0, n = characters.length; i < 8; ++i) {
+  for (let i = 0, n = characters.length; i < len; ++i) {
     pass += characters.charAt(Math.floor(Math.random() * n))
   }
   return pass
