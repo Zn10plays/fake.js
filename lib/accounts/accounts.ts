@@ -11,6 +11,7 @@ class RandAccount {
     this.firstName = randInfo.randomFirstName()
     this.lastName = randInfo.randomLastName()
     this.phonenumber = randInfo.randomNumber({ style: false })
+    this.email = randInfo.randomEmail()
   }
 }
 

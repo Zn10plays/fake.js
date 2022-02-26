@@ -52,6 +52,10 @@ function randomPassword (opt: {length: 8, number: false, capital: true, specialC
   return pass
 }
 
-const exp = { randomFirstName, randomLastName, randomNumber, randomPassword }
+function randomEmail() {
+  return randomFirstName() + ''+ randomLastName() + '@gamil.com'
+}
+
+const exp = { randomFirstName, randomLastName, randomNumber, randomPassword, randomEmail }
 
 export default exp
